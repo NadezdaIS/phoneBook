@@ -44,8 +44,7 @@ public class PhoneBookController {
     }
 
     public void exportToFile() {
-        String fileName = String.valueOf(this.getUserInput("Enter the file name"));
-        this.displayMessage(this.services.exportContactsToCSV(fileName));
+        this.services.handleExportContactsToCsv();
         this.displayMessage("File successfully created!");
 
     }

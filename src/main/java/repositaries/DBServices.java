@@ -124,25 +124,30 @@ public class DBServices {
         return contactsList;
     }
 
-    public String exportContactsToCSV(String fileName) {
+    public void handleExportContactsToCsv() {
         try {
-            FileWriter csvWriter = new FileWriter(fileName);
+            FileWriter csvWriter = new FileWriter("Contacts.csv");
+            Statement stmt = connector.getConnection().createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM contacts");
+
             csvWriter.append("Name,Phone,Email\n");
-            for (Contact contact : contactsList) {
-                csvWriter.append(contact.getName())
-                        .append(",")
-                        .append(contact.getPhoneNumber())
-                        .append(",")
-                        .append(contact.getEmail())
-                        .append("\n");
+
+            while (rs.next()) {
+                String name = rs.getString("name");
+                String phone = rs.getString("phone");
+                String email = rs.getString("email");
+                csvWriter.append(name).append(",").append(phone).append(",").append(email).append("\n");
             }
+
             csvWriter.flush();
             csvWriter.close();
-            return "Contacts exported to CSV file: " + fileName;
-        } catch (IOException e) {
+            rs.close();
+            stmt.close();
+            connector.closeConnection();
+
+        } catch (IOException | SQLException e) {
             e.printStackTrace();
         }
-        return fileName;
     }
 
     public void importContactsFromCSV(String fileName) {
