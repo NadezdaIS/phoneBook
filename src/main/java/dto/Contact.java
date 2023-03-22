@@ -18,16 +18,13 @@ public class Contact {
         return name;
     }
 
-
     public String getPhoneNumber() {
         return phoneNumber;
     }
 
-
     public String getEmail() {
         return email;
     }
-
 
     @Override
     public String toString() {
