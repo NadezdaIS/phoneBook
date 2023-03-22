@@ -1,5 +1,5 @@
 package controllers;
-import repositaries.DBServices;
+import repositories.DBServices;
 
 import javax.swing.*;
 

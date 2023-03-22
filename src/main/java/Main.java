@@ -1,5 +1,4 @@
 import controllers.MenuController;
-import repositaries.DBConnector;
 
 public class Main {
     public static void main(String[] args) {
