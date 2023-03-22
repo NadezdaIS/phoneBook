@@ -9,7 +9,7 @@ public class MenuController {
     private void displayMainMenu()  {
     PhoneBookController controller = new PhoneBookController();
     String[] availableOptions = {"Add contact", "Remove contact", "Find by name", "Find by phone number",
-            "Update contact info", "See all contacts", "Export to file", "Exit" };
+            "Update contact info", "See all contacts", "Export to file", "Import from file","Exit" };
 
     String option = (String) JOptionPane.showInputDialog(
             null,
@@ -42,6 +42,9 @@ public class MenuController {
                 break;
            case "Export to file":
                controller.exportToFile();
+               break;
+           case "Import to file":
+               controller.importFromFile();
                break;
            case "Exit":
                 System.exit(0);

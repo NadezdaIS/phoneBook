@@ -49,6 +49,12 @@ public class PhoneBookController {
         this.displayMessage("File successfully created!");
 
     }
+    public void importFromFile(){
+         String fileName = String.valueOf(this.getUserInput("Enter the file name"));
+         this.services.importContactsFromCSV(fileName);
+         this.displayMessage("File successfully uploaded!");
+    }
+
     private String getUserInput(String message) {
         return JOptionPane.showInputDialog(null, message);
     }

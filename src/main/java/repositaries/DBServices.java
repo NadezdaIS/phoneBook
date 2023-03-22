@@ -1,6 +1,8 @@
 package repositaries;
 import dto.Contact;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.*;
@@ -141,5 +143,26 @@ public class DBServices {
             e.printStackTrace();
         }
         return fileName;
+    }
+
+    public void importContactsFromCSV(String fileName) {
+        try {
+            FileReader fileReader = new FileReader(fileName);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            String line = bufferedReader.readLine();
+            while ((line = bufferedReader.readLine()) != null) {
+                String[] data = line.split(",");
+                String name = data[0];
+                String phone = data[1];
+                String email = data[2];
+                Contact contact = new Contact(name, phone, email);
+                contactsList.add(contact);
+            }
+            bufferedReader.close();
+            fileReader.close();
+            System.out.println("Contacts imported from CSV file: " + fileName);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
