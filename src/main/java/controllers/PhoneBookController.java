@@ -1,6 +1,5 @@
 package controllers;
 import repositories.DBServices;
-
 import javax.swing.*;
 
 public class PhoneBookController {
@@ -32,7 +31,6 @@ public class PhoneBookController {
 
     public void seeAllContacts() {
         this.displayMessage(services.getAllContactsString());
-
     }
 
     public void updateContact() {
@@ -46,7 +44,6 @@ public class PhoneBookController {
     public void exportToFile() {
         this.services.handleExportContactsToCsv();
         this.displayMessage("File successfully created!");
-
     }
 
     private String getUserInput(String message) {
@@ -55,5 +52,6 @@ public class PhoneBookController {
     private void displayMessage(String message) {
         JOptionPane.showMessageDialog(null, message);
     }
+
 }
 
